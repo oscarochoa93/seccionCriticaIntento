@@ -5,6 +5,8 @@
  */
 package productorconsumidor;
 
+import static java.lang.Thread.sleep;
+
 /**
  *
  * @author oscar
@@ -43,14 +45,21 @@ public class Contenedor
         notify();
         int x=Integer.parseInt(Thread.currentThread().getName());
         
-        ventana.esperar[x]="0";
-        ventana.zona[x]="1";
-        ventana.muerto[x]="0";
+        ventana.jesp[x].setText("0");
+        ventana.jejc[x].setText("1");
+        ventana.jdead[x].setText("0");
+        
+        
         System.out.println("hilo no."+x);
         System.out.println("esp "+ventana.esperar[x]);
         System.out.println("sc "+ventana.zona[x]);
         System.out.println("dead "+ventana.muerto[x]);
         System.out.println("------------------------------"); 
+             try {
+                sleep(800);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         texto="1";
         return texto;
         //return contenido;

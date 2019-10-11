@@ -13,8 +13,8 @@ public class ProductorConsumidor
 {
     private static Contenedor contenedor;
     private static Thread productor;
-    private static Thread [] consumidores;
-    private static final int CANTIDADCONSUMIDORES = 2;
+    private static Consumidor [] consumidores;
+    private static final int CANTIDADCONSUMIDORES = 10;
     private static Interfaz win;
     
     /**
@@ -25,7 +25,7 @@ public class ProductorConsumidor
         win = new Interfaz();
         contenedor = new Contenedor(win);
         productor = new Thread(new Productor(contenedor, 1));
-        consumidores = new Thread[CANTIDADCONSUMIDORES];
+        consumidores = new Consumidor[CANTIDADCONSUMIDORES];
       
         
 
@@ -34,6 +34,7 @@ public class ProductorConsumidor
             
             consumidores[i] = new Consumidor(contenedor, i, CANTIDADCONSUMIDORES,win);
             consumidores[i].start();
+            win.setFriend(consumidores);
             win.recibe(i);
             
             //System.out.println("hilo "+i+" en espera");
